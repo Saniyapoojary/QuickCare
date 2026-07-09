@@ -52,30 +52,110 @@ const Login = () => {
   }, [token])
 
   return (
-    <form onSubmit={onSubmitHandler} className='min-h-[80vh] flex items-center'>
-      <div className='flex flex-col gap-3 m-auto items-start p-8 min-w-[340px] sm:min-w-96 border rounded-xl text-[#5E5E5E] text-sm shadow-lg'>
-        <p className='text-2xl font-semibold'>{state === 'Sign Up' ? 'Create Account' : 'Login'}</p>
-        <p>Please {state === 'Sign Up' ? 'sign up' : 'log in'} to book appointment</p>
+    <form
+    onSubmit={onSubmitHandler}
+    className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-cyan-50 to-teal-50 px-6"
+>
+      <div className="w-full max-w-6xl bg-white rounded-3xl shadow-2xl overflow-hidden grid lg:grid-cols-2">
+        {/* Left Side */}
+<div className="hidden lg:flex flex-col justify-center items-center bg-gradient-to-br from-blue-700 via-cyan-500 to-teal-400 p-12 text-white">
+
+    <img
+        src="https://undraw.co/api/illustrations/doctor.svg"
+        alt=""
+        className="w-80 mb-8"
+    />
+    
+
+    <h2 className="text-4xl font-bold">
+        Welcome to QuickCare
+    </h2>
+
+    <p className="mt-4 text-blue-100 text-center leading-8">
+        Book appointments, connect with trusted doctors,
+        and manage your healthcare anytime.
+    </p>
+
+</div>
+{/* Right Side */}
+<div className="p-10 md:p-14 flex flex-col justify-center">
+
+    <h1 className="text-4xl font-bold text-slate-800">
+        {state === 'Sign Up' ? 'Create Account' : 'Welcome Back'}
+    </h1>
+
+    <p className="text-gray-500 mt-3 mb-8">
         {state === 'Sign Up'
-          ? <div className='w-full '>
-            <p>Full Name</p>
-            <input onChange={(e) => setName(e.target.value)} value={name} className='border border-[#DADADA] rounded w-full p-2 mt-1' type="text" required />
-          </div>
-          : null
-        }
-        <div className='w-full '>
-          <p>Email</p>
-          <input onChange={(e) => setEmail(e.target.value)} value={email} className='border border-[#DADADA] rounded w-full p-2 mt-1' type="email" required />
+            ? 'Create your QuickCare account to book appointments.'
+            : 'Sign in to access your appointments and profile.'}
+    </p>
+
+    {state === 'Sign Up' && (
+        <div className="w-full mb-5">
+            <label className="font-semibold text-slate-700">
+                Full Name
+            </label>
+
+            <input
+                type="text"
+                required
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="w-full mt-2 px-5 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-cyan-400 outline-none transition"
+            />
         </div>
-        <div className='w-full '>
-          <p>Password</p>
-          <input onChange={(e) => setPassword(e.target.value)} value={password} className='border border-[#DADADA] rounded w-full p-2 mt-1' type="password" required />
-        </div>
-        <button type='submit' className='bg-primary text-white w-full py-2 my-2 rounded-md text-base'>{state === 'Sign Up' ? 'Create account' : 'Login'}</button>
+    )}
+
+    <div className="w-full mb-5">
+        <label className="font-semibold text-slate-700">
+            Email Address
+        </label>
+
+        <input
+            type="email"
+            required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="w-full mt-2 px-5 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-cyan-400 outline-none transition"
+        />
+    </div>
+
+    <div className="w-full mb-6">
+        <label className="font-semibold text-slate-700">
+            Password
+        </label>
+
+        <input
+            type="password"
+            required
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="w-full mt-2 px-5 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-cyan-400 outline-none transition"
+        />
+    </div>
+
+    <button
+        type="submit"
+        className="w-full py-4 rounded-xl bg-gradient-to-r from-blue-700 via-cyan-500 to-teal-400 text-white font-semibold shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all duration-300"
+    >
+        {state === 'Sign Up' ? 'Create Account' : 'Login'}
+    </button>
+
+    <p className="text-center mt-6 text-gray-500">
         {state === 'Sign Up'
-          ? <p>Already have an account? <span onClick={() => setState('Login')} className='text-primary underline cursor-pointer'>Login here</span></p>
-          : <p>Create an new account? <span onClick={() => setState('Sign Up')} className='text-primary underline cursor-pointer'>Click here</span></p>
-        }
+            ? 'Already have an account?'
+            : "Don't have an account?"}
+
+        <span
+            onClick={() => setState(state === 'Sign Up' ? 'Login' : 'Sign Up')}
+            className="ml-2 text-cyan-600 font-semibold cursor-pointer hover:text-blue-700 transition"
+        >
+            {state === 'Sign Up' ? 'Login' : 'Sign Up'}
+        </span>
+    </p>
+
+</div>
+        
       </div>
     </form>
   )

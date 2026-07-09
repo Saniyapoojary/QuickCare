@@ -37,12 +37,26 @@ const MyProfile = () => {
     }
 
     return userData ? (
-        <div className='max-w-lg flex flex-col gap-2 text-sm pt-5'>
+        <div className="space-y-10">
+
+    {/* Header */}
+    <div className="bg-gradient-to-r from-blue-700 via-cyan-500 to-teal-400 rounded-3xl p-10 text-white shadow-xl">
+
+        <h1 className="text-4xl font-bold">
+            My Profile
+        </h1>
+
+        <p className="mt-3 text-blue-100 text-lg">
+            Manage your personal information and keep your healthcare profile up to date.
+        </p>
+
+    </div>
 
             {isEdit ? (
                 <label htmlFor='image'>
                     <div className='inline-block relative cursor-pointer'>
-                        <img className='w-36 rounded opacity-75' src={image ? URL.createObjectURL(image) : userData.image} alt="" />
+                        <img  className="w-48 h-48 rounded-3xl object-cover border-4 border-cyan-300 opacity-80 shadow-xl"
+ src={image ? URL.createObjectURL(image) : userData.image} alt="" />
                         <img className='w-10 absolute bottom-12 right-12' src={image ? '' : assets.upload_icon} alt="" />
                     </div>
                     <input onChange={(e) => setImage(e.target.files[0])} type="file" id="image" hidden />
@@ -63,7 +77,9 @@ const MyProfile = () => {
             <hr className='bg-[#ADADAD] h-[1px] border-none' />
 
             <div>
-                <p className='text-gray-600 underline mt-3'>CONTACT INFORMATION</p>
+                <p className="text-xl font-bold text-slate-800 mb-6">
+    Contact Information
+</p>
                 <div className='grid grid-cols-[1fr_3fr] gap-y-2.5 mt-3 text-[#363636]'>
                     <p className='font-medium'>Email id:</p>
                     <p className='text-blue-500'>{userData.email}</p>
@@ -104,11 +120,13 @@ const MyProfile = () => {
             </div>
 
             <div>
-                <p className='text-[#797979] underline mt-3'>BASIC INFORMATION</p>
+                <p className="text-xl font-bold text-slate-800 mb-6 mt-8">
+    Basic Information
+</p>
                 <div className='grid grid-cols-[1fr_3fr] gap-y-2.5 mt-3 text-gray-600'>
                     <p className='font-medium'>Gender:</p>
                     {isEdit ? (
-                        <select className='max-w-20 bg-gray-50'
+                        <select className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-cyan-400 outline-none"
                             onChange={(e) => setUserData(prev => ({ ...prev, gender: e.target.value }))}
                             value={userData.gender}
                         >
@@ -134,11 +152,33 @@ const MyProfile = () => {
 
             <div className='mt-10'>
                 {isEdit ? (
-                    <button onClick={updateUserProfileData} className='border border-primary px-8 py-2 rounded-full hover:bg-primary hover:text-white transition-all'>
+                    <button onClick={updateUserProfileData} className='bg-gradient-to-r
+from-blue-700
+via-cyan-500
+to-teal-400
+text-white
+px-10
+py-3
+rounded-xl
+font-semibold
+hover:scale-105
+transition
+shadow-lg px-8 py-2 rounded-full hover:bg-primary hover:text-white transition-all'>
                         Save information
                     </button>
                 ) : (
-                    <button onClick={() => setIsEdit(true)} className='border border-primary px-8 py-2 rounded-full hover:bg-primary hover:text-white transition-all'>
+                    <button onClick={() => setIsEdit(true)} className='bg-gradient-to-r
+from-blue-700
+via-cyan-500
+to-teal-400
+text-white
+px-10
+py-3
+rounded-xl
+font-semibold
+hover:scale-105
+transition
+shadow-lg px-8 py-2 rounded-full hover:bg-primary hover:text-white transition-all'>
                         Edit
                     </button>
                 )}

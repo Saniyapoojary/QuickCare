@@ -19,7 +19,7 @@ const Navbar = () => {
   }
 
   const goToUserPanel = () => {
-    window.location.href = 'https://appointy-roan.vercel.app/'
+    window.location.href = 'http://localhost:5173/'
   }
 
   const isOnDashboard =
@@ -27,13 +27,23 @@ const Navbar = () => {
     location.pathname === '/doctor-dashboard'
 
   return (
-    <div className='flex justify-between items-center px-4 sm:px-10 py-3 border-b bg-white'>
+    <div className="
+flex
+justify-between
+items-center
+px-8
+lg:px-12
+py-4
+bg-white
+border-b
+shadow-sm
+">
       <div className='flex items-center gap-3 text-xs'>
 
         {/* Logo */}
         <img
           onClick={() => navigate('/')}
-          className='w-36 sm:w-40 cursor-pointer'
+          className="w-52 cursor-pointer"
           src={assets.admin_logo}
           alt="Logo"
         />
@@ -47,7 +57,20 @@ const Navbar = () => {
         {isOnDashboard && (
           <button
             onClick={goToUserPanel}
-            className='ml-2 text-white bg-primary hover:bg-gray-700 px-3 py-1.5 rounded-full text-xs'
+            className="
+ml-3
+px-5
+py-2
+rounded-xl
+bg-gradient-to-r
+from-blue-700
+to-cyan-500
+text-white
+font-medium
+shadow-md
+hover:scale-105
+transition 
+"
           >
             User Panel
           </button>
@@ -57,7 +80,21 @@ const Navbar = () => {
       {/* Logout */}
       <button
         onClick={logout}
-        className='bg-primary text-white text-sm px-10 py-2 rounded-full'
+        className="
+bg-gradient-to-r
+from-red-500
+to-pink-500
+text-white
+font-semibold
+px-8
+py-3
+rounded-xl
+shadow-lg
+hover:shadow-xl
+hover:scale-105
+transition-all
+duration-300
+"
       >
         Logout
       </button>

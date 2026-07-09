@@ -21,48 +21,116 @@ const DoctorDashboard = () => {
 
   return dashData && (
     <div className='m-5'>
+      <div className="bg-gradient-to-r from-blue-700 via-cyan-500 to-teal-400 rounded-3xl p-10 text-white shadow-xl mb-8">
 
-      <div className='flex flex-wrap gap-3'>
-        <div className='flex items-center gap-2 bg-white p-4 min-w-52 rounded border-2 border-gray-100 cursor-pointer hover:scale-105 transition-all'>
-          <img className='w-14' src={assets.earning_icon} alt="" />
-          <div>
-            <p className='text-xl font-semibold text-gray-600'>{currency} {dashData.earnings}</p>
-            <p className='text-gray-400'>Earnings</p>
-          </div>
-        </div>
-        <div className='flex items-center gap-2 bg-white p-4 min-w-52 rounded border-2 border-gray-100 cursor-pointer hover:scale-105 transition-all'>
-          <img className='w-14' src={assets.appointments_icon} alt="" />
-          <div>
-            <p className='text-xl font-semibold text-gray-600'>{dashData.appointments}</p>
-            <p className='text-gray-400'>Appointments</p>
-          </div>
-        </div>
-        <div className='flex items-center gap-2 bg-white p-4 min-w-52 rounded border-2 border-gray-100 cursor-pointer hover:scale-105 transition-all'>
-          <img className='w-14' src={assets.patients_icon} alt="" />
-          <div>
-            <p className='text-xl font-semibold text-gray-600'>{dashData.patients}</p>
-            <p className='text-gray-400'>Patients</p></div>
-        </div>
-      </div>
+    <span className="bg-white/20 px-4 py-2 rounded-full text-sm">
+        Doctor Portal
+    </span>
 
-      <div className='bg-white'>
-        <div className='flex items-center gap-2.5 px-4 py-4 mt-10 rounded-t border'>
+    <h1 className="text-4xl font-bold mt-4">
+        Doctor Dashboard
+    </h1>
+
+    <p className="mt-3 text-blue-100">
+        Welcome back! Here's an overview of today's appointments and earnings.
+    </p>
+
+</div>
+
+      <div className="grid md:grid-cols-3 gap-6">
+
+    <div className="bg-white rounded-3xl shadow-lg p-6 hover:-translate-y-2 transition">
+
+        <div className="flex items-center gap-4">
+
+            <div className="w-16 h-16 rounded-2xl bg-blue-100 flex items-center justify-center">
+                <img className="w-9" src={assets.earning_icon} alt="" />
+            </div>
+
+            <div>
+                <p className="text-3xl font-bold text-slate-800">
+                    {currency} {dashData.earnings}
+                </p>
+
+                <p className="text-gray-500">
+                    Total Earnings
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div className="bg-white rounded-3xl shadow-lg p-6 hover:-translate-y-2 transition">
+
+        <div className="flex items-center gap-4">
+
+            <div className="w-16 h-16 rounded-2xl bg-cyan-100 flex items-center justify-center">
+                <img className="w-9" src={assets.appointments_icon} alt="" />
+            </div>
+
+            <div>
+                <p className="text-3xl font-bold text-slate-800">
+                    {dashData.appointments}
+                </p>
+
+                <p className="text-gray-500">
+                    Appointments
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div className="bg-white rounded-3xl shadow-lg p-6 hover:-translate-y-2 transition">
+
+        <div className="flex items-center gap-4">
+
+            <div className="w-16 h-16 rounded-2xl bg-green-100 flex items-center justify-center">
+                <img className="w-9" src={assets.patients_icon} alt="" />
+            </div>
+
+            <div>
+                <p className="text-3xl font-bold text-slate-800">
+                    {dashData.patients}
+                </p>
+
+                <p className="text-gray-500">
+                    Patients
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+      <div className="bg-white rounded-3xl shadow-xl mt-10 overflow-hidden">
+        <div className="flex items-center gap-3 p-6 border-b bg-gray-50">
           <img src={assets.list_icon} alt="" />
-          <p className='font-semibold'>Latest Bookings</p>
+          <p className="text-xl font-bold text-slate-800">
+    Today's Appointments
+</p>
         </div>
 
         <div className='pt-4 border border-t-0'>
           {dashData.latestAppointments.slice(0, 5).map((item, index) => (
-            <div className='flex items-center px-6 py-3 gap-3 hover:bg-gray-100' key={index}>
-              <img className='rounded-full w-10' src={item.userData.image} alt="" />
+            <div className="flex items-center gap-5 px-6 py-5 hover:bg-cyan-50 transition border-b last:border-none" key={index}>
+              <img className="w-14 h-14 rounded-full object-cover border-2 border-cyan-300" src={item.userData.image} alt="" />
               <div className='flex-1 text-sm'>
-                <p className='text-gray-800 font-medium'>{item.userData.name}</p>
-                <p className='text-gray-600 '>Booking on {slotDateFormat(item.slotDate)}</p>
+                <p className="font-bold text-slate-800 text-lg">{item.userData.name}</p>
+                <p className='text-gray-500 '>Booking on {slotDateFormat(item.slotDate)}</p>
               </div>
               {item.cancelled
-                ? <p className='text-red-400 text-xs font-medium'>Cancelled</p>
+                ?<span className="px-4 py-2 rounded-full bg-red-100 text-red-600 font-semibold">
+    Cancelled
+</span>
                 : item.isCompleted
-                  ? <p className='text-green-500 text-xs font-medium'>Completed</p>
+                  ? <span className="px-4 py-2 rounded-full bg-green-100 text-green-600 font-semibold">
+    Completed
+</span>
                   : <div className='flex'>
                     <img onClick={() => cancelAppointment(item._id)} className='w-10 cursor-pointer' src={assets.cancel_icon} alt="" />
                     <img onClick={() => completeAppointment(item._id)} className='w-10 cursor-pointer' src={assets.tick_icon} alt="" />

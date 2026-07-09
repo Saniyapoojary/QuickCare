@@ -5,26 +5,50 @@ import bcrypt from "bcrypt";
 import validator from "validator";
 import { v2 as cloudinary } from "cloudinary";
 import userModel from "../models/userModel.js"
+import adminModel from "../models/adminModel.js";
 
 // API for admin login
 const loginAdmin = async (req, res) => {
     try {
 
-        const { email, password } = req.body
+        const { email, password } = req.body;
 
-        if (email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD) {
-            const token = jwt.sign(email + password, process.env.JWT_SECRET)
-            res.json({ success: true, token })
-        } else {
-            res.json({ success: false, message: "Invalid credentials" })
+        const admin = await adminModel.findOne({ email });
+
+        if (!admin) {
+            return res.json({
+                success: false,
+                message: "Admin not found"
+            });
         }
 
-    } catch (error) {
-        console.log(error)
-        res.json({ success: false, message: error.message })
-    }
+        const isMatch = await bcrypt.compare(password, admin.password);
 
-}
+        if (!isMatch) {
+            return res.json({
+                success: false,
+                message: "Invalid credentials"
+            });
+        }
+
+        const token = jwt.sign(
+            { id: admin._id, role: "admin" },
+            process.env.JWT_SECRET
+        );
+
+        res.json({
+            success: true,
+            token
+        });
+
+    } catch (error) {
+        console.log(error);
+        res.json({
+            success: false,
+            message: error.message
+        });
+    }
+};
 
 // API for adding Doctor
 const addDoctor = async (req, res) => {

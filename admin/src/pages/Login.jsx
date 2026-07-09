@@ -44,25 +44,117 @@ const Login = () => {
   }
 
   return (
-    <form onSubmit={onSubmitHandler} className='min-h-[80vh] flex items-center'>
-      <div className='flex flex-col gap-3 m-auto items-start p-8 min-w-[340px] sm:min-w-96 border rounded-xl text-[#5E5E5E] text-sm shadow-lg'>
-        <p className='text-2xl font-semibold m-auto'><span className='text-primary'>{state}</span> Login</p>
-        <div className='w-full '>
-          <p>Email</p>
-          <input onChange={(e) => setEmail(e.target.value)} value={email} className='border border-[#DADADA] rounded w-full p-2 mt-1' type="email" required />
-        </div>
-        <div className='w-full '>
-          <p>Password</p>
-          <input onChange={(e) => setPassword(e.target.value)} value={password} className='border border-[#DADADA] rounded w-full p-2 mt-1' type="password" required />
-        </div>
-        <button className='bg-primary text-white w-full py-2 rounded-md text-base'>Login</button>
-        {
-          state === 'Admin'
-            ? <p>Doctor Login? <span onClick={() => setState('Doctor')} className='text-primary underline cursor-pointer'>Click here</span></p>
-            : <p>Admin Login? <span onClick={() => setState('Admin')} className='text-primary underline cursor-pointer'>Click here</span></p>
-        }
+    <form
+    onSubmit={onSubmitHandler}
+    className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-cyan-50 to-teal-50 px-6"
+  >
+    <div className="w-full max-w-6xl bg-white rounded-3xl shadow-2xl overflow-hidden grid lg:grid-cols-2">
+
+      {/* Left Side */}
+      <div className="hidden lg:flex flex-col justify-center items-center bg-gradient-to-br from-blue-700 via-cyan-500 to-teal-400 p-12 text-white">
+
+        <img
+          src="https://img.icons8.com/fluency/480/doctor-male.png"
+          alt=""
+          className="w-72 mb-8"
+        />
+
+        <h2 className="text-4xl font-bold">
+          {state === "Admin" ? "Admin Portal" : "Doctor Portal"}
+        </h2>
+
+        <p className="mt-5 text-blue-100 text-center leading-8 max-w-md">
+          {state === "Admin"
+            ? "Manage doctors, appointments and patients from one powerful dashboard."
+            : "Access your appointments, manage patients and update your availability."}
+        </p>
+
       </div>
-    </form>
+
+      {/* Right Side */}
+      <div className="p-10 md:p-14 flex flex-col justify-center">
+
+        <div className="mb-8">
+
+          <span className="inline-block bg-cyan-100 text-cyan-700 px-4 py-2 rounded-full font-semibold text-sm">
+            {state}
+          </span>
+
+          <h1 className="text-4xl font-bold text-slate-800 mt-5">
+            Welcome Back
+          </h1>
+
+          <p className="text-gray-500 mt-3">
+            Sign in to continue to your {state.toLowerCase()} dashboard.
+          </p>
+
+        </div>
+
+        <div className="mb-5">
+          <label className="font-semibold text-slate-700">
+            Email Address
+          </label>
+
+          <input
+            type="email"
+            required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="w-full mt-2 px-5 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-cyan-400 outline-none transition"
+          />
+        </div>
+
+        <div className="mb-7">
+          <label className="font-semibold text-slate-700">
+            Password
+          </label>
+
+          <input
+            type="password"
+            required
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="w-full mt-2 px-5 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-cyan-400 outline-none transition"
+          />
+        </div>
+
+        <button
+          type="submit"
+          className="w-full py-4 rounded-xl bg-gradient-to-r from-blue-700 via-cyan-500 to-teal-400 text-white font-semibold shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all duration-300"
+        >
+          Login as {state}
+        </button>
+
+        <div className="text-center mt-8">
+
+          {state === "Admin" ? (
+            <p className="text-gray-500">
+              Doctor Login?
+              <span
+                onClick={() => setState("Doctor")}
+                className="ml-2 text-cyan-600 font-semibold cursor-pointer hover:text-blue-700"
+              >
+                Click here
+              </span>
+            </p>
+          ) : (
+            <p className="text-gray-500">
+              Admin Login?
+              <span
+                onClick={() => setState("Admin")}
+                className="ml-2 text-cyan-600 font-semibold cursor-pointer hover:text-blue-700"
+              >
+                Click here
+              </span>
+            </p>
+          )}
+
+        </div>
+
+      </div>
+
+    </div>
+  </form>
   )
 }
 

@@ -132,28 +132,107 @@ const MyAppointments = () => {
 
   return (
     <div>
-      <p className='pb-3 mt-12 text-lg font-medium text-gray-600 border-b'>My appointments</p>
+      <div className="bg-gradient-to-r from-blue-700 via-cyan-500 to-teal-400 rounded-3xl p-10 text-white shadow-xl mb-10">
+
+        <h1 className="text-4xl font-bold">
+          My Appointments
+        </h1>
+
+        <p className="mt-3 text-blue-100 text-lg">
+          Track, manage and pay for all your appointments in one place.
+        </p>
+
+      </div>
       <div className=''>
         {appointments.map((item, index) => (
-          <div key={index} className='grid grid-cols-[1fr_2fr] gap-4 sm:flex sm:gap-6 py-4 border-b'>
+          <div
+            key={index}
+            className="
+    bg-white
+    rounded-3xl
+    shadow-lg
+    hover:shadow-2xl
+    transition-all
+    duration-300
+    p-6
+    mb-8
+    flex
+    flex-col
+    lg:flex-row
+    gap-6
+    "
+          >
             <div>
-              <img className='w-36 bg-[#EAEFFF]' src={item.docData.image} alt="" />
+              <img className="w-40 h-40 rounded-2xl object-cover bg-gradient-to-br from-blue-100 to-cyan-50" src={item.docData.image} alt="" />
             </div>
             <div className='flex-1 text-sm text-[#5E5E5E]'>
-              <p className='text-[#262626] text-base font-semibold'>{item.docData.name}</p>
-              <p>{item.docData.speciality}</p>
-              <p className='text-[#464646] font-medium mt-1'>Address:</p>
-              <p className=''>{item.docData.address.line1}</p>
-              <p className=''>{item.docData.address.line2}</p>
-              <p className=' mt-1'><span className='text-sm text-[#3C3C3C] font-medium'>Date & Time:</span> {slotDateFormat(item.slotDate)} |  {item.slotTime}</p>
+              <h2 className="text-2xl font-bold text-slate-800"></h2>
+              <h2 className="text-2xl font-bold text-slate-800">
+                {item.docData.name}
+              </h2>
+
+              <p className="text-cyan-600 font-semibold mt-1">
+                {item.docData.speciality}
+              </p>
+              <div className="mt-4">
+
+                <p className="font-semibold text-slate-700">
+                  Clinic Address
+                </p>
+
+                <p className="text-gray-500">
+                  {item.docData.address.line1}
+                </p>
+
+                <p className="text-gray-500">
+                  {item.docData.address.line2}
+                </p>
+
+              </div>
+              <div className="flex flex-wrap gap-4 mt-5">
+
+                <span className="bg-blue-50 text-blue-700 px-4 py-2 rounded-full">
+                  📅 {slotDateFormat(item.slotDate)}
+                </span>
+
+                <span className="bg-cyan-50 text-cyan-700 px-4 py-2 rounded-full">
+                  🕒 {item.slotTime}
+                </span>
+
+              </div>
+
             </div>
             <div></div>
-            <div className='flex flex-col gap-2 justify-end text-sm text-center'>
-              {!item.cancelled && !item.payment && !item.isCompleted && payment !== item._id && <button onClick={() => setPayment(item._id)} className='text-[#696969] sm:min-w-48 py-2 border rounded hover:bg-primary hover:text-white transition-all duration-300'>Pay Online</button>}
-              {!item.cancelled && !item.payment && !item.isCompleted && payment === item._id && <button onClick={() => appointmentRazorpay(item._id)} className='text-[#696969] sm:min-w-48 py-2 border rounded hover:bg-gray-100 hover:text-white transition-all duration-300 flex items-center justify-center'><img className='max-w-20 max-h-5' src={assets.razorpay_logo} alt="" /></button>}
-              {!item.cancelled && item.payment && !item.isCompleted && <button className='sm:min-w-48 py-2 border rounded text-[#696969]  bg-[#EAEFFF]'>Paid</button>}
+            <div className="mb-4">
 
-              {item.isCompleted && <button className='sm:min-w-48 py-2 border border-green-500 rounded text-green-500'>Completed</button>}
+              {item.payment ? (
+                <span className="bg-green-100 text-green-700 px-4 py-2 rounded-full">
+                  ✓ Paid
+                </span>
+              ) : (
+                <span className="bg-yellow-100 text-yellow-700 px-4 py-2 rounded-full">
+                  Pending Payment
+                </span>
+              )}
+
+            </div>
+            <div className='flex flex-col gap-2 justify-end text-sm text-center'>
+              {!item.cancelled && !item.payment && !item.isCompleted && payment !== item._id && (
+                <button
+                  onClick={() => setPayment(item._id)}
+                  className="sm:min-w-48 py-3 rounded-xl font-semibold bg-gradient-to-r from-blue-700 to-cyan-500 text-white hover:shadow-lg transition-all duration-300"
+                >
+                  Pay Online
+                </button>
+              )}
+              {!item.cancelled && !item.payment && !item.isCompleted && payment === item._id && <button onClick={() => appointmentRazorpay(item._id)} className='text-[#696969] sm:min-w-48 py-2 border rounded hover:bg-gray-100 hover:text-white transition-all duration-300 flex items-center justify-center'><img className='max-w-20 max-h-5' src={assets.razorpay_logo} alt="" /></button>}
+              {!item.cancelled && item.payment && !item.isCompleted && <button className="sm:min-w-48 py-3 rounded-xl bg-green-100 text-green-700 border border-green-500 font-semibold">
+                ✓ Paid
+              </button>}
+
+              {item.isCompleted && <button className="sm:min-w-48 py-3 rounded-xl bg-green-100 text-green-700 border border-green-500 font-semibold">
+                ✓ Completed
+              </button>}
 
               {!item.cancelled && !item.isCompleted && <button onClick={() => cancelAppointment(item._id)} className='text-[#696969] sm:min-w-48 py-2 border rounded hover:bg-red-600 hover:text-white transition-all duration-300'>Cancel appointment</button>}
               {item.cancelled && !item.isCompleted && <button className='sm:min-w-48 py-2 border border-red-500 rounded text-red-500'>Appointment cancelled</button>}

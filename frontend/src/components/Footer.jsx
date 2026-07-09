@@ -1,48 +1,138 @@
-import React from 'react';
-import { assets } from '../assets/assets';
+import React from "react";
+import { assets } from "../assets/assets";
 
 const Footer = () => {
   return (
-    <div className="px-6 md:px-10">
-      <div className="grid md:grid-cols-[3fr_1fr_1fr] gap-12 my-10 mt-24 text-sm items-start">
-        {/* Left Section */}
-        <div className="flex items-start gap-4">
-  <img className="w-28 mt-1" src={assets.logo} alt="QuickCare Logo" />
-  <p className="text-gray-600 leading-6 md:max-w-[75%]">
-    <strong>QuickCare – Effortless Healthcare Scheduling
+    <footer className="mt-28 bg-gradient-to-br from-slate-50 to-cyan-50 border-t">
 
-</strong> <br />Patients can instantly book appointments with trusted doctors—from routine check-ups to specialist care—in just a few clicks. Our smart reminders keep appointments on track, while real-time updates ensure seamless coordination. Designed for modern healthcare, we save time for both patients and providers.
-  </p>
-</div>
+      <div className="max-w-7xl mx-auto px-6 md:px-12 py-16">
 
+        <div className="grid md:grid-cols-[2fr_1fr_1fr_1fr] gap-12">
 
-        {/* Middle Section */}
-        <div>
-          <p className="text-lg font-semibold mb-4">COMPANY</p>
-          <ul className="flex flex-col gap-2 text-gray-600">
-            <li>Home</li>
-            <li>About Us</li>
-            <li>Contact Us</li>
-            <li>Privacy Policy</li>
-          </ul>
+          {/* Brand */}
+          <div>
+
+            <img
+              src={assets.logo}
+              alt="QuickCare"
+              className="w-44"
+            />
+
+            <p className="mt-6 text-gray-600 leading-7">
+              QuickCare is your trusted healthcare companion,
+              making doctor appointments faster, easier,
+              and stress-free.
+            </p>
+
+            <div className="flex gap-4 mt-6">
+
+              <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white cursor-pointer hover:scale-110 transition">
+                F
+              </div>
+
+              <div className="w-10 h-10 rounded-full bg-cyan-500 flex items-center justify-center text-white cursor-pointer hover:scale-110 transition">
+                X
+              </div>
+
+              <div className="w-10 h-10 rounded-full bg-teal-500 flex items-center justify-center text-white cursor-pointer hover:scale-110 transition">
+                I
+              </div>
+
+            </div>
+
+          </div>
+
+          {/* Company */}
+
+          <div>
+
+            <h3 className="text-xl font-bold text-slate-800 mb-6">
+              Company
+            </h3>
+
+            <ul className="space-y-3 text-gray-600">
+
+              <li className="hover:text-blue-600 cursor-pointer transition">
+                Home
+              </li>
+
+              <li className="hover:text-blue-600 cursor-pointer transition">
+                About
+              </li>
+
+              <li className="hover:text-blue-600 cursor-pointer transition">
+                Doctors
+              </li>
+
+              <li className="hover:text-blue-600 cursor-pointer transition">
+                Contact
+              </li>
+
+            </ul>
+
+          </div>
+
+          {/* Services */}
+
+          <div>
+
+            <h3 className="text-xl font-bold text-slate-800 mb-6">
+              Services
+            </h3>
+
+            <ul className="space-y-3 text-gray-600">
+
+              <li>Book Appointment</li>
+
+              <li>Health Checkups</li>
+
+              <li>Emergency Care</li>
+
+              <li>Online Consultation</li>
+
+            </ul>
+
+          </div>
+
+          {/* Contact */}
+
+          <div>
+
+            <h3 className="text-xl font-bold text-slate-800 mb-6">
+              Contact
+            </h3>
+
+            <ul className="space-y-3 text-gray-600">
+
+              <li>📞 +91 90000 90000</li>
+
+              <li>✉ support@quickcare.in</li>
+
+              <li>📍 Mangalore, Karnataka</li>
+
+            </ul>
+
+          </div>
+
         </div>
 
-        {/* Right Section */}
-        <div>
-          <p className="text-lg font-semibold mb-4">GET IN TOUCH</p>
-          <ul className="flex flex-col gap-2 text-gray-600">
-            <li>+91-90000-90000</li>
-            <li>customersupport@quickcare.in</li>
-          </ul>
+        <hr className="my-12" />
+
+        <div className="flex flex-col md:flex-row justify-between items-center text-gray-500">
+
+          <p>
+            © 2026 QuickCare. All Rights Reserved.
+          </p>
+
+          <p className="mt-3 md:mt-0">
+            Your Health, Our Priority.
+          </p>
+
         </div>
+
       </div>
 
-      {/* Bottom Footer */}
-      <hr className="border-gray-300" />
-      <p className="py-4 text-sm text-center text-gray-600">
-        © 2025 quickcare.in — All Rights Reserved.
-      </p>
-    </div>
+    </footer>
   );
 };
 

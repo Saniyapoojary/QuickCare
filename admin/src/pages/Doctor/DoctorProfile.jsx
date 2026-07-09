@@ -48,16 +48,46 @@ const DoctorProfile = () => {
 
     return profileData && (
         <div>
-            <div className='flex flex-col gap-4 m-5'>
+            <div className="m-5">
+
+<div className="bg-gradient-to-r from-blue-700 via-cyan-500 to-teal-400 rounded-3xl p-10 text-white shadow-xl mb-8">
+
+    <span className="bg-white/20 px-4 py-2 rounded-full text-sm">
+        Doctor Portal
+    </span>
+
+    <h1 className="text-4xl font-bold mt-4">
+        My Profile
+    </h1>
+
+    <p className="mt-3 text-blue-100">
+        Manage your professional information, availability and consultation fees.
+    </p>
+
+</div>
+
+<div className="bg-white rounded-3xl shadow-xl p-10"></div>
                 <div>
-                    <img className='bg-primary/80 w-full sm:max-w-64 rounded-lg' src={profileData.image} alt="" />
+                    <img className="
+w-72
+rounded-3xl
+shadow-lg
+border-4
+border-cyan-200
+object-cover
+" src={profileData.image} alt="" />
                 </div>
 
-                <div className='flex-1 border border-stone-100 rounded-lg p-8 py-7 bg-white'>
+                <div className="
+flex-1
+bg-gray-50
+rounded-3xl
+p-10
+">
 
                     {/* ----- Doc Info : name, degree, experience ----- */}
 
-                    <p className='flex items-center gap-2 text-3xl font-medium text-gray-700'>{profileData.name}</p>
+                    <p className="text-4xl font-bold text-slate-800">{profileData.name}</p>
                     <div className='flex items-center gap-2 mt-1 text-gray-600'>
                         <p>{profileData.degree} - {profileData.speciality}</p>
                         <button className='py-0.5 px-2 border text-xs rounded-full'>{profileData.experience}</button>
@@ -65,7 +95,7 @@ const DoctorProfile = () => {
 
                     {/* ----- Doc About ----- */}
                     <div>
-                        <p className='flex items-center gap-1 text-sm font-medium text-[#262626] mt-3'>About :</p>
+                       <h2 className="text-xl font-bold text-slate-800 mt-8">About :</h2>
                         <p className='text-sm text-gray-600 max-w-[700px] mt-1'>
                             {
                                 isEdit
@@ -103,6 +133,7 @@ const DoctorProfile = () => {
             </div>
         </div>
     )
+    
 }
 
 export default DoctorProfile
