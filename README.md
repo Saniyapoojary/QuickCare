@@ -115,7 +115,7 @@ To set up and run this project locally:
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/your-username/quickare.git
+   git clone https://github.com/your-username/quickcare.git
    cd quickcare
    ```
 
